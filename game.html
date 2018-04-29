@@ -6,6 +6,7 @@ Tennis Game
         var canvas;
         var canvasContext;
         var ballX = 50; //x stands for position
+        var ballSpeedX = 15;
 
     window.onload = function() {
            
@@ -20,7 +21,10 @@ Tennis Game
 
         }
         function motion(){
-            ballX = ballX + 1;
+            ballX = ballX + ballSpeedX;
+            if(ballX > 800){
+                ballSpeedX = - ballSpeedX;
+            }
         }
         function drawing(){
 
@@ -30,7 +34,7 @@ Tennis Game
             canvasContext.fillStyle = 'red';
             canvasContext.fillRect(0,200,20,100);
             canvasContext.fillStyle = 'green';
-            canvasContext.fillRect(ballX,250,50,25);
+            canvasContext.fillRect(ballX,250,25,25);
 
         }
     </script>
