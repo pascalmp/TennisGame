@@ -22,19 +22,27 @@ Tennis Game
         }
         function motion(){
             ballX = ballX + ballSpeedX;
-            if(ballX > 800){
+            if(ballX > canvas.width){
+                ballSpeedX = - ballSpeedX;
+            }
+            if(ballX < 0){
                 ballSpeedX = - ballSpeedX;
             }
         }
         function drawing(){
 
             console.log(ballX);
-            canvasContext.fillStyle = 'black';
-            canvasContext.fillRect(0,0,canvas.width,canvas.height);
-            canvasContext.fillStyle = 'red';
-            canvasContext.fillRect(0,200,20,100);
-            canvasContext.fillStyle = 'green';
-            canvasContext.fillRect(ballX,250,25,25);
+            //creates blank black canvas
+            colorRect(0,0,canvas.width,canvas.height, 'black');
+            //creates left player paddle "red"
+            colorRect(0,200,20,100, 'red');
+            //creates ball 'green'
+            colorRect(ballX,250,25,25, 'green');
+
+        }
+        function colorRect(leftX,topY, width, height, drawColor){
+           canvasContext.fillStyle = drawColor;
+           canvasContext.fillRect(leftX,topY, width, height);
 
         }
     </script>
