@@ -1,5 +1,5 @@
 <html>
-Tennis Game
+
 <canvas id="gameCanvas" width="800" height="600"></canvas>
     
     <script>
@@ -9,6 +9,20 @@ Tennis Game
         var ballSpeedX = 15;
         var ballY = 50; //x stands for position
         var ballSpeedY = 5;
+
+        var paddle1Y  = 250;
+        const PADDLE_HEIGHT = 100;
+
+        function calculateMousePos(evt){
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+            var mouseX = evt.clientX - rect.left - root.scrollLeft;
+            var mouseY = evt.clientY - rect.top - root.scrollTop;
+            return {
+                x:mouseX,
+                y:mouseY
+            };
+        }
 
     window.onload = function() {
            
@@ -20,6 +34,12 @@ Tennis Game
                 motion();
                 drawing();
             }, 1000/framesPerSecond);
+
+            canvas.addEventListener('mousemove', 
+                function(evt) {
+                    var mousePos = calculateMousePos(evt);
+                    paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
+            });
 
         }
         function motion(){
@@ -45,7 +65,7 @@ Tennis Game
             //creates blank black canvas
             colorRect(0,0,canvas.width,canvas.height, 'black');
             //creates left player paddle "red"
-            colorRect(0,200,20,100, 'red');
+            colorRect(0,paddle1Y,20,PADDLE_HEIGHT, 'red');
             //creates ball 'green'
             colorCircle(ballX,ballY,25, 'green');
             
