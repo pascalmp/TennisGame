@@ -11,17 +11,24 @@ Tennis Game
            
             canvas = document.getElementById('gameCanvas');
             canvasContext  = canvas.getContext('2d');
-            setInterval(drawing, 100);
+            
+            var framesPerSecond = 30;
+            setInterval(function callMotionDraw(){
+                motion();
+                drawing();
+            }, 1000/framesPerSecond);
 
         }
-        function drawing(){
+        function motion(){
             ballX = ballX + 1;
+        }
+        function drawing(){
 
             console.log(ballX);
             canvasContext.fillStyle = 'black';
             canvasContext.fillRect(0,0,canvas.width,canvas.height);
             canvasContext.fillStyle = 'red';
-            canvasContext.fillRect(100,200,50,25);
+            canvasContext.fillRect(0,200,20,100);
             canvasContext.fillStyle = 'green';
             canvasContext.fillRect(ballX,250,50,25);
 
