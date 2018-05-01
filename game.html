@@ -13,6 +13,7 @@
         var paddle1Y  = 250;
         var paddle2Y  = 250;
         const PADDLE_HEIGHT = 100;
+        const PADDLE_THICKNESS = 20;
 
         function calculateMousePos(evt){
             var rect = canvas.getBoundingClientRect();
@@ -54,7 +55,14 @@
             ballY = ballY + ballSpeedY;
             //where the ball touches the right side
             if(ballX > canvas.width){
-                ballSpeedX = - ballSpeedX;
+
+                if(ballY > paddle2Y && 
+                ballY < paddle2Y + PADDLE_HEIGHT) {
+                    ballSpeedX = -ballSpeedX;
+                } else {
+                    ballReset();
+                }
+                //ballSpeedX = - ballSpeedX;
             }
             //where the ball touches the left side
             if(ballX < 0){
@@ -79,9 +87,9 @@
             //creates blank black canvas
             colorRect(0,0,canvas.width,canvas.height, 'black');
             //creates left player paddle "red"
-            colorRect(0,paddle1Y,20,PADDLE_HEIGHT, 'red');
+            colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'red');
             //creates Right player(computer) paddle "red"
-            colorRect(780,paddle2Y,20,PADDLE_HEIGHT, 'blue');
+            colorRect(canvas.width - PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'blue');
             //creates ball 'green'
             colorCircle(ballX,ballY,25, 'green');
             
