@@ -11,6 +11,7 @@
         var ballSpeedY = 5;
 
         var paddle1Y  = 250;
+        var paddle2Y  = 250;
         const PADDLE_HEIGHT = 100;
 
         function calculateMousePos(evt){
@@ -79,6 +80,8 @@
             colorRect(0,0,canvas.width,canvas.height, 'black');
             //creates left player paddle "red"
             colorRect(0,paddle1Y,20,PADDLE_HEIGHT, 'red');
+            //creates Right player(computer) paddle "red"
+            colorRect(780,paddle2Y,20,PADDLE_HEIGHT, 'blue');
             //creates ball 'green'
             colorCircle(ballX,ballY,25, 'green');
             
