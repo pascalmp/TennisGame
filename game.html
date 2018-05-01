@@ -51,7 +51,8 @@
         }
 
         function computerMovement(){
-            if(paddle2Y < ballY) {
+            var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
+            if(paddle2YCenter < ballY) {
                 paddle2Y += 6;
             } else {
                 paddle2Y -= 6;
@@ -60,8 +61,8 @@
 
         function motion(){
             computerMovement();
-            ballX = ballX + ballSpeedX;
-            ballY = ballY + ballSpeedY;
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
             //where the ball touches the right side
             if(ballX > canvas.width){
 
