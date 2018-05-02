@@ -131,6 +131,12 @@
                 ballSpeedY = - ballSpeedY;
             }
         }
+
+        function drawNet(){
+            for(var i = 0; i < canvas.height; i+= 40){
+                colorRect(canvas.width/2-1,i,4,30, 'Lime');
+            }
+        }
         function drawing(){
 
             //console.log(ballX);
@@ -152,6 +158,8 @@
                 canvasContext.fillText("Click to continue", 400, 300);
                 return;
             }
+            //Adds dotted line for Net in the midle of the cavas
+            drawNet();
             //creates left player paddle "red"
             colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'red');
             //creates Right player(computer) paddle "red"
