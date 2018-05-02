@@ -12,7 +12,9 @@
 
         var player1Score = 0;
         var player2Score = 0;
-        const WINNING_SCORE = 50;
+        const WINNING_SCORE = 5;
+
+        var showingWinScreen = false;
 
         var paddle1Y  = 250;
         var paddle2Y  = 250;
@@ -30,6 +32,16 @@
             };
         }
 
+        function handleMouseClick(evt){
+            if(showingWinScreen){
+                player1Score = 0;
+                player2Score = 0;
+                showingWinScreen = false;
+
+            }
+            
+        }
+
     window.onload = function() {
            
             canvas = document.getElementById('gameCanvas');
@@ -41,6 +53,8 @@
                 drawing();
             }, 1000/framesPerSecond);
 
+            canvas.addEventListener('mousedown',handleMouseClick);
+
             canvas.addEventListener('mousemove', 
                 function(evt) {
                     var mousePos = calculateMousePos(evt);
@@ -51,8 +65,9 @@
         function ballReset(){
             if(player1Score >= WINNING_SCORE || 
                player2Score >= WINNING_SCORE){
-                   player1Score = 0;
-                   player2Score = 0;
+                   
+                   showingWinScreen = true;
+
                }
 
             ballSpeedX = - ballSpeedX;
@@ -70,6 +85,9 @@
         }
 
         function motion(){
+            if(showingWinScreen){
+                return;
+            }
             computerMovement();
             ballX += ballSpeedX;
             ballY += ballSpeedY;
@@ -115,9 +133,25 @@
         }
         function drawing(){
 
-            console.log(ballX);
+            //console.log(ballX);
             //creates blank black canvas
             colorRect(0,0,canvas.width,canvas.height, 'black');
+
+            if(showingWinScreen){
+                canvasContext.fillStyle = 'Yellow';
+                if(player1Score >= WINNING_SCORE){
+                    canvasContext.fillText("YOU WON!!!", 400, 200);
+
+                } else if(player2Score >= WINNING_SCORE){
+                    canvasContext.fillText("COMPUTER WON!!!", 400, 200);
+
+                }
+
+
+                
+                canvasContext.fillText("Click to continue", 400, 300);
+                return;
+            }
             //creates left player paddle "red"
             colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'red');
             //creates Right player(computer) paddle "red"
