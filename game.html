@@ -12,7 +12,7 @@
 
         var player1Score = 0;
         var player2Score = 0;
-        const WINNING_SCORE = 6;
+        const WINNING_SCORE = 50;
 
         var paddle1Y  = 250;
         var paddle2Y  = 250;
@@ -80,7 +80,7 @@
                 ballY < paddle2Y + PADDLE_HEIGHT) {
                     ballSpeedX = -ballSpeedX;
 
-                    var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT/2);
+                    var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT/2);
                     ballSpeedY = deltaY * 0.35;
                 } else {
                     player1Score++;// Must be before ballReset
@@ -95,7 +95,7 @@
                 ballY < paddle1Y + PADDLE_HEIGHT) {
                     ballSpeedX = -ballSpeedX;
 
-                    var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT/2);
+                    var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT/2);
                     ballSpeedY = deltaY * 0.35;
                 } else {
                     player2Score++;// Must be before ballReset
