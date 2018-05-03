@@ -42,7 +42,7 @@
             }
             
         }
-
+    //What happens when page loads
     window.onload = function() {
            
             canvas = document.getElementById('gameCanvas');
@@ -63,6 +63,7 @@
             });
 
         }
+        //For resetting the ball and score
         function ballReset(){
             if(player1Score >= WINNING_SCORE || 
                player2Score >= WINNING_SCORE){
@@ -75,7 +76,7 @@
             ballX = canvas.width/2;
             ballY = canvas.height /2;
         }
-
+        //AI controling the computer side of player.
         function computerMovement(){
             var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
             if(paddle2YCenter < ballY - 25) {
