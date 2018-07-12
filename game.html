@@ -146,7 +146,15 @@
             //creates blank black canvas
             colorRect(0,0,canvas.width,canvas.height, 'black');
 
-            
+            if(showingWinScreen){
+                canvasContext.fillStyle = 'Yellow';
+                if(player1Score >= WINNING_SCORE){
+                    canvasContext.fillText("YOU WON!!!", 400, 200);
+
+                } else if(player2Score >= WINNING_SCORE){
+                    canvasContext.fillText("COMPUTER WON!!!", 400, 200);
+
+                }
 
 
                 
