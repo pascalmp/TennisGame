@@ -91,7 +91,23 @@
             if(showingWinScreen){
                 return;
             }
-            
+            computerMovement();
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+            //where the ball touches the right side
+            if(ballX > canvas.width){
+
+                if(ballY > paddle2Y && 
+                ballY < paddle2Y + PADDLE_HEIGHT) {
+                    ballSpeedX = -ballSpeedX;
+
+                    var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT/2);
+                    ballSpeedY = deltaY * 0.35;
+                } else {
+                    player1Score++;// Must be before ballReset
+                    ballReset();
+                    
+                }
                 //ballSpeedX = - ballSpeedX;
             }
             //where the ball touches the left side
